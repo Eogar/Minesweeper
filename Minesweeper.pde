@@ -9,7 +9,7 @@ private ArrayList <MSButton> bombs = new ArrayList <MSButton>();
 void setup ()
 {
   background(0);
-  size(400, 500);
+  size(400, 450);
   textAlign(CENTER, CENTER);
 
   Interactive.make( this );
@@ -64,12 +64,12 @@ public void displayLosingMessage()
     }
   }
    fill(255);
-   text("TRY AGAIN", 200, 450);
+   text("TRY AGAIN", 200, 425);
 }
     public void displayWinningMessage()
     {
       fill(255);
-      text("YOU WIN", 200, 450);
+      text("YOU WIN", 200, 425);
       //your code here
     }
 
