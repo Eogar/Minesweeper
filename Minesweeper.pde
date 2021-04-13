@@ -4,7 +4,7 @@ public final static int NUM_COLS = 20;
 public final static int NUM_MINES = 40;
 public boolean endGame = false;
 private MSButton[][] buttons; 
-private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); 
+private ArrayList <MSButton> mines = new ArrayList <MSButton>(); 
 
 void setup ()
 {
@@ -23,12 +23,12 @@ void setup ()
 }
 public void setMines()
 {
-  while (bombs.size() < NUM_MINES)
+  while (mines.size() < NUM_MINES)
   {
     int a = (int)(Math.random()* NUM_ROWS);
     int b = (int)(Math.random()* NUM_COLS);
-    if (!bombs.contains(buttons[a][b]))
-      bombs.add(buttons[a][b]);
+    if (!mines.contains(buttons[a][b]))
+      mines.add(buttons[a][b]);
   }
 }
 
@@ -44,7 +44,7 @@ public boolean isWon()
 {
   for ( int r = 0; r < NUM_ROWS; r++) {
     for ( int c = 0; c < NUM_COLS; c++) {
-      if (bombs.contains(buttons[r][c]) && buttons[r][c].marked == false)
+      if (mines.contains(buttons[r][c]) && buttons[r][c].marked == false)
        {
          return false;
        }
@@ -57,7 +57,7 @@ public void displayLosingMessage()
 {
   for ( int r = 0; r < NUM_ROWS; r++) {
     for ( int c = 0; c < NUM_COLS; c++) {
-      if (bombs.contains(buttons[r][c])) {
+      if (mines.contains(buttons[r][c])) {
         buttons[r][c].clicked = true;
         buttons[r][c].setLabel("!");
       }
@@ -107,13 +107,13 @@ public void mousePressed ()
             marked = !marked;
             if (marked == false)
               clicked = false;
-          } else if (bombs.contains(this))
+          } else if (mines.contains(this))
           {
             endGame = true;
             displayLosingMessage();
           }
-          else if (countBombs(c, d) > 0)
-            setLabel(""+countBombs(c, d));
+          else if (countMines(c, d) > 0)
+            setLabel(""+countMines(c, d));
           else
           {
             if (isValid(c, d-1) && buttons[c][d-1].isClicked()== false) {
@@ -147,7 +147,7 @@ public void draw ()
       {    
         if (marked)
           fill(0);
-        else if ( clicked && bombs.contains(this) ) 
+        else if ( clicked && mines.contains(this) ) 
           fill(255, 0, 0);
         else if (clicked)
           fill( 200 );
@@ -168,15 +168,15 @@ public boolean isValid(int r, int c)
           return true;
         return false;
       }
-public int countBombs(int row, int col)
+public int countMines(int row, int col)
       {
-        int numBombs = 0;
+        int numMines = 0;
         for (int r = row-1; r<=row+1; r++)
           for (int c = col-1; c<=col+1; c++)
-            if (isValid(r, c) && bombs.contains(buttons[r][c]))
-              numBombs++;
-        if (bombs.contains(buttons[row][col]))
-          numBombs--;
-        return numBombs;
+            if (isValid(r, c) && mines.contains(buttons[r][c]))
+              numMines++;
+        if (mines.contains(buttons[row][col]))
+          numMines--;
+        return numMines;
       }
     }
