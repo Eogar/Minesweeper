@@ -64,12 +64,12 @@ public void displayLosingMessage()
     }
   }
    fill(255);
-   text("TRY AGAIN", 100, 0);
+   text("TRY AGAIN", 100, 425);
 }
     public void displayWinningMessage()
     {
       fill(255);
-      text("YOU WIN", 100, 0);
+      text("YOU WIN", 100, 425);
       //your code here
     }
 
