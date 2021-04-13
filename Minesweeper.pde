@@ -73,14 +73,13 @@ public void displayLosingMessage()
       //your code here
     }
 
-    public class MSButton
+public class MSButton
     {
       private int c, d;
       private float x, y, width, height;
       private boolean clicked, marked;
       private String label;
-
-      public MSButton ( int row, int col)
+public MSButton ( int row, int col)
       {
         width = 400/NUM_COLS;
         height = 400/NUM_ROWS;
@@ -92,17 +91,15 @@ public void displayLosingMessage()
         marked = clicked = false;
         Interactive.add( this ); // register it with the manager
       }
-      public boolean isMarked()
+public boolean isMarked()
       {
         return marked;
       }
-      public boolean isClicked()
+public boolean isClicked()
       {
         return clicked;
       }
-      // called by manager
-
-      public void mousePressed () 
+public void mousePressed () 
       {
         if(endGame == false){
           clicked = true;
@@ -146,8 +143,7 @@ public void displayLosingMessage()
           }
         }
       }
-
-      public void draw () 
+public void draw () 
       {    
         if (marked)
           fill(0);
@@ -162,17 +158,17 @@ public void displayLosingMessage()
         fill(0);
         text(label, x+width/2, y+height/2);
       }
-      public void setLabel(String newLabel)
+public void setLabel(String newLabel)
       {
         label = newLabel;
       }
-      public boolean isValid(int r, int c)
+public boolean isValid(int r, int c)
       {
         if (r >= 0 && r < NUM_ROWS && c >= 0 && c < NUM_COLS)
           return true;
         return false;
       }
-      public int countBombs(int row, int col)
+public int countBombs(int row, int col)
       {
         int numBombs = 0;
         for (int r = row-1; r<=row+1; r++)
